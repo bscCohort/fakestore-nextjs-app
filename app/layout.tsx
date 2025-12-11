@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "E-Com Lite",
+  title: "Fake Store",
   description: "Simple Next.js shopping demo using DummyJSON",
 };
 

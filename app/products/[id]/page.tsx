@@ -1,5 +1,5 @@
-export default async function ProductDetail({ params }: Props) {
-  const { id } = await params;  // Unwrap the promise
+export default async function ProductDetail({ params }: any) {
+  const { id } = await params;
 
   const res = await fetch(`https://dummyjson.com/products/${id}`, {
     cache: "no-store",
@@ -7,16 +7,16 @@ export default async function ProductDetail({ params }: Props) {
 
   if (!res.ok) {
     return (
-      <main className="p-6">
+      <div className="p-6">
         <h1 className="text-2xl font-bold">Product Not Found</h1>
-      </main>
+      </div>
     );
   }
 
   const product = await res.json();
 
   return (
-    <main className="p-6 max-w-4xl mx-auto">
+    <div className="p-6 max-w-4xl mx-auto">
       <a href="/products" className="text-blue-500 underline">
         ← Back
       </a>
@@ -29,7 +29,10 @@ export default async function ProductDetail({ params }: Props) {
         />
 
         <div className="flex-1">
-          <h1 className="text-3xl font-bold mb-4">{product.title}</h1>
+          <h1 className="text-3xl font-bold mb-4 text-gray-900">
+            {product.title}
+          </h1>
+
           <p className="text-gray-600 mb-4">{product.description}</p>
 
           <p className="text-2xl text-blue-600 font-semibold">
@@ -47,18 +50,9 @@ export default async function ProductDetail({ params }: Props) {
             >
               Edit
             </a>
-
-            <form action={`/products/${product.id}/delete`} method="post">
-              <button
-                type="submit"
-                className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700"
-              >
-                Delete
-              </button>
-            </form>
           </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 }
